@@ -1,14 +1,16 @@
+import 'dart:io';
+
 class FeedModel {
-  final String? title;
-  final String? description;
-  final String? imagePath;
-  final bool isFav;
-  final bool isLiked;
+  String? title;
+  String? description;
+  File? image;
+  bool isFav;
+  bool isLiked;
 
   FeedModel(
       {this.title,
       this.description,
-      this.imagePath,
+      this.image,
       this.isFav = false,
       this.isLiked = false});
 }

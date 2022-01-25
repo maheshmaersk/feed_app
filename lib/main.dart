@@ -1,6 +1,7 @@
 import 'package:feed_app/view/home/home.dart';
 import 'package:feed_app/view/post_feed/new_post.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,14 +13,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Feed App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routes: {
-        '/': (context) => const HomePage(),
-        'addPost': (context) => const AddPost()
+    return Provider(
+      create: (BuildContext context) {
+        MaterialApp(
+          title: 'Feed App',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          routes: {
+            '/': (context) => const HomePage(),
+            'addPost': (context) => const AddPost()
+          },
+        );
       },
     );
   }

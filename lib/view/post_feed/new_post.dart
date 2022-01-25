@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:feed_app/model/data_model/feed_model.dart';
+import 'package:feed_app/view_model/feed_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
@@ -26,14 +28,20 @@ class _AddPostState extends State<AddPost> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(hintText: "New Title"),
+            TextField(
+              decoration: const InputDecoration(hintText: "New Title"),
+              onChanged: (value) {
+                title = value;
+              },
             ),
             const SizedBox(
               height: 16,
             ),
-            const TextField(
-              decoration: InputDecoration(hintText: "New Description"),
+            TextField(
+              decoration: const InputDecoration(hintText: "New Description"),
+              onChanged: (value) {
+                decs = value;
+              },
             ),
             const SizedBox(
               height: 16,
@@ -47,20 +55,23 @@ class _AddPostState extends State<AddPost> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: InkWell(
-          onTap: () {
-            FeedModel model = FeedModel(
-              title: title,
-              description: decs,
-              imagePath: file?.path,
-            );
-          },
-          child: Container(
-            height: kToolbarHeight,
-          ),
-        ),
-      ),
+      bottomNavigationBar: file != null
+          ? BottomAppBar(
+              child: InkWell(
+                onTap: () {
+                  FeedModel model = FeedModel(
+                    title: title,
+                    description: decs,
+                    image: file,
+                  );
+                  Provider.of<FeedViewModel>(context).addPost(model);
+                },
+                child: Container(
+                  height: kToolbarHeight,
+                ),
+              ),
+            )
+          : null,
     );
   }
 
@@ -69,5 +80,6 @@ class _AddPostState extends State<AddPost> {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     file = File.fromUri(Uri(path: image!.path));
+    setState(() {});
   }
 }
