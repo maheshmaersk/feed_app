@@ -1,4 +1,5 @@
 import 'package:feed_app/view/home/home.dart';
+import 'package:feed_app/view/post_feed/new_post.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      routes: {
+        '/': (context) => const HomePage(),
+        'addPost': (context) => const AddPost()
+      },
     );
   }
 }

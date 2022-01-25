@@ -18,7 +18,9 @@ class HomePage extends StatelessWidget {
       ),
       body: const Feed(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, 'addPost');
+        },
         child: const Icon(Icons.add),
       ),
     );
