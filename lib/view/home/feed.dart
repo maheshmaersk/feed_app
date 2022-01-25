@@ -8,6 +8,7 @@ class Feed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // listener for the view model change
     return Consumer<FeedViewModel>(
       builder: (context, state, child) {
         return ListView.builder(

@@ -6,11 +6,13 @@ class FeedViewModel extends ChangeNotifier {
 
   List<FeedModel> get feeds => _feeds;
 
+  //method to add post
   void addPost(FeedModel model) {
     _feeds.add(model);
     notifyListeners();
   }
 
+  //method to like/dislike the post
   void likePost(bool liked, int index) {
     _feeds[index].isLiked = liked;
     notifyListeners();
