@@ -64,6 +64,8 @@ class _AddPostState extends State<AddPost> {
                     description: decs,
                     image: file,
                   );
+
+                  // this will update the viewmodel to add new post
                   Provider.of<FeedViewModel>(context).addPost(model);
                 },
                 child: Container(
